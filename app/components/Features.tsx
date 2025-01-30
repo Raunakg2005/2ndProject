@@ -42,7 +42,7 @@ export default function Features() {
     <section ref={ref} className="py-20 px-4 bg-[#0a0a0a] text-white overflow-hidden">
       <motion.div className="max-w-6xl mx-auto" style={{ y, opacity }}>
         <h2 className="text-4xl font-bold text-center mb-12 text-[#8a2be2]">Arcane Features</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -51,8 +51,8 @@ export default function Features() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <Card className="h-full bg-[#1a0b2e] border-[#4b0082] hover:shadow-[0_0_15px_rgba(138,43,226,0.5)] transition-shadow duration-300">
-                <CardContent className="p-6 flex flex-col items-center text-center">
+              <Card className="h-full bg-[#1a0b2e] border-[#4b0082] hover:shadow-[0_0_15px_rgba(138,43,226,0.5)] transition-shadow duration-300 aspect-[3/4]">
+                <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 360 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -70,4 +70,3 @@ export default function Features() {
     </section>
   )
 }
-

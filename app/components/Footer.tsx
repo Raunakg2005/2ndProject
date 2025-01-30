@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Facebook, Twitter, Instagram, Github } from "lucide-react"
+import { Facebook, Twitter, Instagram, Github, Linkedin } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -57,25 +57,20 @@ export default function Footer() {
             <h4 className="text-xl font-semibold mb-4 text-[#8a2be2]">Scrying Mirrors</h4>
             <div className="flex space-x-4">
               <motion.a
-                href="#"
+                href="https://github.com/Raunakg2005/"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="text-gray-400 hover:text-[#8a2be2]"
               >
-                <Facebook size={24} />
+                <Github size={24} />
               </motion.a>
               <motion.a
-                href="#"
-                whileHover={{ scale: 1.2, rotate: 360 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="text-gray-400 hover:text-[#8a2be2]"
-              >
-                <Twitter size={24} />
-              </motion.a>
-              <motion.a
-                href="#"
+                href="https://www.instagram.com/ohh.itz_rkg/"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -84,13 +79,15 @@ export default function Footer() {
                 <Instagram size={24} />
               </motion.a>
               <motion.a
-                href="#"
+                href="https://www.linkedin.com/in/raunak-gupta-7b3503270/"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="text-gray-400 hover:text-[#8a2be2]"
               >
-                <Github size={24} />
+                <Linkedin size={24} />
               </motion.a>
             </div>
           </div>
@@ -104,4 +101,3 @@ export default function Footer() {
     </footer>
   )
 }
-

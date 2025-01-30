@@ -27,6 +27,7 @@ const FloatingObject = ({ children, x, y }: { children: React.ReactNode; x: numb
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null!)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -41,10 +42,17 @@ export default function Hero() {
       setMousePosition({ x: clientX, y: clientY })
     }
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640) 
+    }
+
     window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("resize", handleResize)
+    handleResize() 
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("resize", handleResize)
     }
   }, [])
 
@@ -63,14 +71,14 @@ export default function Hero() {
           )`,
         }}
       />
-      <motion.div className="relative z-10 text-center text-white" style={{ y, opacity }}>
+      <motion.div className="relative z-10 text-center text-white px-4" style={{ y, opacity }}>
         <motion.h1
-          className="text-5xl md:text-7xl font-bold mb-6 font-serif"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-serif"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Welcome to the Arcane World of RKG
+          Welcome to the Arcane World
         </motion.h1>
         <TypeAnimation
           sequence={[
@@ -83,39 +91,38 @@ export default function Hero() {
           ]}
           wrapper="h2"
           speed={50}
-          className="text-2xl md:text-3xl mb-8 text-[#8a2be2] font-serif"
+          className="text-xl sm:text-2xl md:text-3xl mb-8 text-[#8a2be2] font-serif"
           repeat={Number.POSITIVE_INFINITY}
         />
         <motion.div
-          className="flex justify-center space-x-4"
+          className="flex flex-col sm:flex-row justify-center gap-4"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <Button size="lg" className="bg-[#4b0082] hover:bg-[#5a1292] text-white font-bold">
+          <Button size="lg" className="bg-[#4b0082] hover:bg-[#5a1292] text-white font-bold w-full sm:w-auto">
             <BookOpen className="mr-2" size={18} />
             Begin Your Arcane Journey
           </Button>
           <Button
             size="lg"
-            variant="outline"
-            className="bg-transparent border-[#4b0082] text-[#4b0082] hover:bg-[#4b0082] hover:text-white"
+            className="bg-[#4b0082] hover:bg-[#5a1292] text-white font-bold w-full sm:w-auto"
           >
             <Feather className="mr-2" size={18} />
             Explore Mystical Posts
           </Button>
         </motion.div>
       </motion.div>
-      <FloatingObject x={50} y={100}>
+      {/* Floating Objects with Responsive Positioning */}
+      <FloatingObject x={isMobile ? 20 : 50} y={isMobile ? 50 : 100}>
         <Sparkles className="text-[#8a2be2]" size={32} />
       </FloatingObject>
-      <FloatingObject x={-50} y={-100}>
+      <FloatingObject x={isMobile ? -20 : -50} y={isMobile ? -50 : -100}>
         <BookOpen className="text-[#9370db]" size={32} />
       </FloatingObject>
-      <FloatingObject x={-100} y={150}>
+      <FloatingObject x={isMobile ? -50 : -100} y={isMobile ? 100 : 150}>
         <Feather className="text-[#483d8b]" size={32} />
       </FloatingObject>
     </section>
   )
 }
-
